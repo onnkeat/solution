@@ -6,20 +6,12 @@ input_str = input()
 
 input_list = input_str.split(' ')
 
+
 int_list = [int(x) for x in input_list]
 size = len(int_list)
 
 subset_dict = {}
 def findAllSubset(n, currentSubset, int_list, size, unique):
-    if n==size:
-        return
-    
-    print(n, type(currentSubset), int_list[n])
-    currentSubset_includeNextNum = currentSubset.copy()
-    currentSubset_includeNextNum.append(int_list[n])
-    findAllSubset(n+1, currentSubset_includeNextNum, int_list, size, True)
-    
-    findAllSubset(n+1, currentSubset, int_list, size, False)
     
     if unique:
         if currentSubset: #list not empty
@@ -28,10 +20,27 @@ def findAllSubset(n, currentSubset, int_list, size, unique):
                 subset_dict[subset_sum] = [currentSubset]
             else:
                 subset_dict[subset_sum].append(currentSubset)
+                
+    if n==size:
+        return
+    
+    currentSubset_includeNextNum = currentSubset.copy()
+    currentSubset_includeNextNum.append(int_list[n])
+    findAllSubset(n+1, currentSubset_includeNextNum, int_list, size, True)
+    
+    findAllSubset(n+1, currentSubset, int_list, size, False)
+    
+    
     
 
 findAllSubset(0, [], int_list, size, False)
-print(subset_dict)
 
 
+for key, value in subset_dict.items():
+    if len(value) > 1:
+        output = value
+        print('output: ', value)
+        break
     
+
+
