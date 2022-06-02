@@ -39,7 +39,7 @@ findAllSubset(0, [], int_list, size, False)
 for key, value in subset_dict.items():
     if len(value) > 1:
         output = value
-        print('output: ', value)
+        print('output: ', value) # [[2, 4], [2, 1, 3], [1, 5]]
         break
     
 
